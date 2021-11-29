@@ -1,14 +1,16 @@
-<h1>Blog articles</h1>
-<table style="margin-top: 10px;">
+<h1>Artigos do Blog</h1>
+<table>
+<?= $this->Html->link('Deslogar', ['controller' => 'Users', 'action' => 'logout'], ['class' => 'button float-left']) ?>
+
     <!-- Link para Criar artigo -->
-    <?= $this->Html->link('Adicionar artigo', ['action' => 'add']) ?>
-    <br></br>
-    <?= $this->Html->link('Cadastrar Usuário', ['controller' => 'Users', 'action' => 'add']) ?>
+    <div style="margin-top: 20px;">
+    <?= $this->Html->link('Adicionar artigo', ['action' => 'add'], ['class' => 'button float-right']) ?>
+    </div>
 
     <tr>
         <th>Id</th>
-        <th>Title</th>
-        <th>Created</th>
+        <th>Título</th>
+        <th>Criado</th>
     </tr>
 
     <!-- Aqui é onde iremos iterar nosso objeto de solicitação $articles, exibindo informações de artigos -->

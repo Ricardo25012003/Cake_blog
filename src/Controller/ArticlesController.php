@@ -27,11 +27,10 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEmptyEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
-            // Adicione esta linha
-            $article->user_id = $this->Auth->user('id');
-            // Você também pode fazer o seguinte
+            
             //$newData = ['user_id' => $this->Auth->user('id')];
             //$article = $this->Articles->patchEntity($article, $newData);
+            
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('Seu artigo foi salvo.'));
                 return $this->redirect(['action' => 'index']);

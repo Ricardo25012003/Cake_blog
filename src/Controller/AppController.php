@@ -35,19 +35,14 @@ class AppController extends Controller
 
     public function initialize() :void
     {
-        $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
-            'authorize' => ['Controller'],
-            'loginRedirect' => [
-                'controller' => 'Articles',
-                'action' => 'index'
-            ],
-            'logoutRedirect' => [
-                'controller' => 'Pages',
-                'action' => 'display',
-                'home'
-            ]
-        ]);
+
+    parent::initialize();
+    $this->loadComponent('RequestHandler');
+    $this->loadComponent('Flash');
+
+    // Add this line to check authentication result and lock your site
+    $this->loadComponent('Authentication.Authentication');
+    
     }
 
     public function isAuthorized($user)
@@ -61,9 +56,13 @@ class AppController extends Controller
     return false;
 }
 
-    public function beforeFilter(EventInterface $event)
-    {
-        $this->Auth->allow(['index', 'view', 'display']);
-    }
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+{
+    parent::beforeFilter($event);
+    // for all controllers in our application, make index and view
+    // actions public, skipping the authentication check
+    $this->Authentication->addUnauthenticatedActions(['index', 'view']);
+}
+
 
 }

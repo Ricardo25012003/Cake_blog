@@ -1,13 +1,12 @@
 <div class="users form">
-
-<?= $this->Flash->render('auth') ?>
-<?= $this->Form->create() ?>
+    <?= $this->Flash->render() ?>
+    <?= $this->Html->link('Cadastrar Usuário', ['controller' => 'Users', 'action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3>Login</h3>
+    <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('Por favor informe seu usuário e senha') ?></legend>
-        <?= $this->Form->input('email') ?>
-        <?= $this->Form->input('password') ?>
+        <?= $this->Form->control('email', ['required' => true]) ?>
+        <?= $this->Form->control('password', ['required' => true]) ?>
     </fieldset>
-<?= $this->Form->button(__('Login')); ?>
-<?= $this->Form->end() ?>
-
+    <?= $this->Form->submit(__('Login')); ?>
+    <?= $this->Form->end() ?>
 </div>
